@@ -1,7 +1,9 @@
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/transition/transition-link";
 import { MapPin, Mail, Phone } from "lucide-react";
 
 import { Logo } from "@/components/layout/logo";
+import { Button } from "@/components/ui/button";
+import { SplitHeading } from "@/components/motion/split-heading";
 import { footerNav } from "@/data/nav";
 import { contactInfo, siteConfig, socialLinks } from "@/data/site";
 import {
@@ -20,12 +22,31 @@ const socialIcons: Record<string, React.ComponentType<{ className?: string }>> =
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal text-white/70">
+    <footer className="bg-background text-white/70">
+      <div className="section-py border-b border-white/10">
+        <div className="container-px mx-auto max-w-7xl">
+          <span className="mb-4 inline-block font-heading text-xs uppercase tracking-[0.35em] text-white/40">
+            Hablemos
+          </span>
+          <SplitHeading as="h2" className="text-display max-w-4xl text-white">
+            ¿TIENES UN PROYECTO EN MENTE?
+          </SplitHeading>
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Button asChild size="lg">
+              <Link href="/contacto">Contáctanos</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-white">
+              <a href={contactInfo.phoneHref}>{contactInfo.phone}</a>
+            </Button>
+          </div>
+        </div>
+      </div>
+
       <div className="container-px mx-auto max-w-7xl py-16">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Logo variant="light" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
               {siteConfig.shortDescription}
             </p>
             <div className="mt-6 flex gap-3">
@@ -38,6 +59,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
+                    data-cursor-hover
                     className="flex h-9 w-9 items-center justify-center border border-white/15 text-white/70 transition-colors hover:border-accent hover:text-accent"
                   >
                     {Icon && <Icon className="h-4 w-4" />}

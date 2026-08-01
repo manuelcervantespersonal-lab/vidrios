@@ -43,6 +43,7 @@ export function ProjectsFilterGrid() {
             type="button"
             onClick={() => handleSelect(cat.value)}
             aria-pressed={active === cat.value}
+            data-cursor-hover
             className={cn(
               "border px-5 py-2 font-heading text-sm uppercase tracking-wide transition-colors",
               active === cat.value

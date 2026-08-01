@@ -1,26 +1,29 @@
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/transition/transition-link";
+import { ArrowUpRight } from "lucide-react";
 
 import { Reveal } from "@/components/motion/reveal";
+import { SplitHeading } from "@/components/motion/split-heading";
 import { Button } from "@/components/ui/button";
 import { contactInfo } from "@/data/site";
 
 export function CtaSection() {
   return (
-    <section className="bg-accent">
-      <div className="container-px mx-auto flex max-w-7xl flex-col items-center gap-8 py-16 text-center md:flex-row md:justify-between md:text-left">
+    <section className="section-py bg-background">
+      <div className="container-px mx-auto max-w-7xl text-center">
         <Reveal>
-          <h2 className="text-2xl font-semibold text-white md:text-4xl">
-            ¿Tienes un proyecto en puerta?
-          </h2>
-          <p className="mt-3 max-w-xl font-body text-base normal-case tracking-normal text-white/85">
-            Escríbenos y un especialista de {""}
-            <span className="font-medium">Cristalum</span> te contactará para
-            revisar los requerimientos técnicos de tu proyecto.
-          </p>
+          <span className="mb-4 inline-block font-heading text-xs uppercase tracking-[0.35em] text-accent">
+            ¿Listo para empezar?
+          </span>
         </Reveal>
-        <Reveal delay={0.1} className="flex shrink-0 flex-col gap-3 sm:flex-row">
-          <Button asChild size="lg" variant="dark">
-            <Link href="/contacto">Contáctanos</Link>
+        <SplitHeading as="h2" className="text-display mx-auto max-w-4xl text-white">
+          HABLEMOS DE TU PRÓXIMO PROYECTO
+        </SplitHeading>
+        <Reveal delay={0.15} className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <Button asChild size="lg" className="group">
+            <Link href="/contacto">
+              Contáctanos
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="text-white">
             <a href={contactInfo.phoneHref}>{contactInfo.phone}</a>

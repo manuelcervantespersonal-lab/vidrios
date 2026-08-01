@@ -20,7 +20,7 @@ export default function ProductosPage() {
         image="/images/hero/hero-productos.jpg"
       />
 
-      <section className="section-py bg-white">
+      <section className="section-py bg-background">
         <div className="container-px mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product, i) => (

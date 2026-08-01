@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/transition/transition-link";
 import { CheckCircle2 } from "lucide-react";
 
 import { Reveal } from "@/components/motion/reveal";
+import { SplitHeading } from "@/components/motion/split-heading";
 import { Button } from "@/components/ui/button";
 import { DecorativePattern } from "@/components/shared/decorative-pattern";
 import { aboutContent } from "@/data/about";
@@ -16,16 +17,16 @@ export function AboutSection() {
 
       <div className="container-px relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <Reveal>
-          <span className="font-heading text-sm uppercase tracking-[0.25em] text-accent">
+          <span className="font-heading text-xs uppercase tracking-[0.35em] text-accent">
             Quiénes somos
           </span>
-          <h2 className="mt-3 text-3xl font-semibold text-primary md:text-5xl">
-            Sobre Nosotros
-          </h2>
-          <p className="mt-6 font-body text-base normal-case tracking-normal text-muted-foreground">
+          <SplitHeading as="h2" className="text-display-sm mt-3 text-white">
+            SOBRE NOSOTROS
+          </SplitHeading>
+          <p className="mt-6 font-body text-base normal-case tracking-normal text-white/55">
             {aboutContent.history[0]}
           </p>
-          <p className="mt-4 font-body text-base normal-case tracking-normal text-muted-foreground">
+          <p className="mt-4 font-body text-base normal-case tracking-normal text-white/55">
             Desde {siteConfig.foundedYear}, acompañamos a constructoras, desarrolladoras y
             despachos de arquitectura en proyectos que exigen precisión técnica y
             cumplimiento absoluto de tiempos de entrega.
@@ -35,14 +36,14 @@ export function AboutSection() {
             {aboutContent.values.map((value) => (
               <li key={value.title} className="flex items-center gap-2.5">
                 <CheckCircle2 className="h-5 w-5 shrink-0 text-accent" />
-                <span className="font-heading text-sm uppercase tracking-wide text-primary">
+                <span className="font-heading text-sm uppercase tracking-wide text-white">
                   {value.title}
                 </span>
               </li>
             ))}
           </ul>
 
-          <Button asChild size="lg" variant="outlineDark" className="mt-10">
+          <Button asChild size="lg" variant="outline" className="mt-10 text-white">
             <Link href="/nosotros">Conoce nuestra historia</Link>
           </Button>
         </Reveal>
@@ -55,7 +56,7 @@ export function AboutSection() {
               alt="Equipo de ingeniería revisando planos de fachada en planta de fabricación"
               fill
               sizes="(max-width: 1024px) 100vw, 40vw"
-              className="relative object-cover"
+              className="relative object-cover opacity-90"
             />
           </div>
         </Reveal>

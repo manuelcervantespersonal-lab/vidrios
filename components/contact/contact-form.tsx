@@ -51,14 +51,14 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center gap-4 border border-border bg-secondary p-10 text-center">
+      <div className="flex flex-col items-center gap-4 border border-white/10 bg-secondary p-10 text-center">
         <CheckCircle2 className="h-10 w-10 text-accent" />
-        <h3 className="text-xl font-semibold text-primary">¡Mensaje enviado!</h3>
-        <p className="font-body text-sm normal-case tracking-normal text-muted-foreground">
+        <h3 className="text-xl font-semibold text-white">¡Mensaje enviado!</h3>
+        <p className="font-body text-sm normal-case tracking-normal text-white/55">
           Gracias por contactarnos. Un especialista revisará tu solicitud y te
           responderá a la brevedad.
         </p>
-        <Button variant="outlineDark" onClick={() => setStatus("idle")}>
+        <Button variant="outline" className="text-white" onClick={() => setStatus("idle")}>
           Enviar otro mensaje
         </Button>
       </div>
@@ -89,7 +89,7 @@ export function ContactForm() {
       </div>
 
       {status === "error" && (
-        <div className="flex items-center gap-2 border border-accent/40 bg-accent/5 px-4 py-3 text-sm text-accent-dark">
+        <div className="flex items-center gap-2 border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-white">
           <AlertCircle className="h-4 w-4 shrink-0" />
           {errorMessage}
         </div>

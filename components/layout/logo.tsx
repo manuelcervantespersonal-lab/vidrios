@@ -1,8 +1,8 @@
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/transition/transition-link";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
 
-export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
+export function Logo({ variant = "light" }: { variant?: "dark" | "light" }) {
   return (
     <Link
       href="/"

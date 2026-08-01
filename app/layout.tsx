@@ -3,6 +3,10 @@ import { Oswald, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { Preloader } from "@/components/preloader/preloader";
+import { CustomCursor } from "@/components/cursor/custom-cursor";
+import { SmoothScrollProvider } from "@/components/scroll/smooth-scroll-provider";
+import { PageTransitionProvider } from "@/components/transition/page-transition-context";
 import { siteConfig } from "@/data/site";
 
 const oswald = Oswald({
@@ -54,11 +58,17 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${oswald.variable} ${inter.variable} font-body antialiased`}
+        className={`${oswald.variable} ${inter.variable} bg-background font-body text-foreground antialiased`}
       >
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <Preloader />
+        <CustomCursor />
+        <PageTransitionProvider>
+          <SmoothScrollProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScrollProvider>
+        </PageTransitionProvider>
       </body>
     </html>
   );

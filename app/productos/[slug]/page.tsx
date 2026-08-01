@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/transition/transition-link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Check } from "lucide-react";
 
@@ -40,11 +40,12 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
     <>
       <PageBanner title={product.name} subtitle={product.shortDescription} image={product.image} compact />
 
-      <section className="section-py bg-white">
+      <section className="section-py bg-background">
         <div className="container-px mx-auto max-w-7xl">
           <Link
             href="/productos"
-            className="inline-flex items-center gap-2 font-heading text-sm uppercase tracking-wide text-muted-foreground hover:text-accent"
+            data-cursor-hover
+            className="inline-flex items-center gap-2 font-heading text-sm uppercase tracking-wide text-white/50 hover:text-accent"
           >
             <ArrowLeft className="h-4 w-4" />
             Volver a productos
@@ -52,7 +53,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
 
           <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              <Reveal className="space-y-4 font-body text-base normal-case tracking-normal text-muted-foreground">
+              <Reveal className="space-y-4 font-body text-base normal-case tracking-normal text-white/55">
                 {product.description.map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
@@ -70,21 +71,21 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                       alt={`${product.name} — referencia ${i + 2}`}
                       fill
                       sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="object-cover"
+                      className="object-cover opacity-90"
                     />
                   </Reveal>
                 ))}
               </div>
 
               <Reveal delay={0.15} className="mt-10">
-                <h2 className="font-heading text-sm uppercase tracking-widest text-primary">
+                <h2 className="font-heading text-sm uppercase tracking-widest text-white">
                   Aplicaciones
                 </h2>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {product.applications.map((app) => (
                     <li
                       key={app}
-                      className="flex items-center gap-2 border border-border px-3 py-1.5 text-sm text-primary"
+                      className="flex items-center gap-2 border border-white/15 px-3 py-1.5 text-sm text-white"
                     >
                       <Check className="h-3.5 w-3.5 text-accent" />
                       {app}
@@ -95,15 +96,15 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             </div>
 
             <Reveal delay={0.1}>
-              <aside className="border border-border p-8">
-                <h2 className="font-heading text-sm uppercase tracking-widest text-primary">
+              <aside className="border border-white/10 bg-secondary p-8">
+                <h2 className="font-heading text-sm uppercase tracking-widest text-white">
                   Especificaciones
                 </h2>
                 <dl className="mt-6 space-y-5 text-sm">
                   {product.specs.map((spec) => (
                     <div key={spec.label}>
-                      <dt className="text-muted-foreground">{spec.label}</dt>
-                      <dd className="font-medium text-primary">{spec.value}</dd>
+                      <dt className="text-white/45">{spec.label}</dt>
+                      <dd className="font-medium text-white">{spec.value}</dd>
                     </div>
                   ))}
                 </dl>

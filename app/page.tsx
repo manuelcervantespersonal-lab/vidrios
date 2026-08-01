@@ -12,22 +12,25 @@ export default function Home() {
     <>
       <Hero />
       <StatsSection />
-      <SectionDivider bgClassName="bg-primary" fillClassName="fill-white" variant="diagonal" />
       <ServicesSection />
-      <SectionDivider bgClassName="bg-white" fillClassName="fill-secondary" variant="curve" />
+      <SectionDivider bgClassName="bg-background" fillClassName="fill-secondary" variant="curve" />
       <AboutSection />
       <SectionDivider
         bgClassName="bg-secondary"
-        fillClassName="fill-white"
+        fillClassName="fill-background"
         variant="diagonal"
         flip
       />
       <FeaturedProjectsSection />
-      <SectionDivider bgClassName="bg-white" fillClassName="fill-secondary" variant="curve" flip />
+      <SectionDivider
+        bgClassName="bg-background"
+        fillClassName="fill-secondary"
+        variant="curve"
+        flip
+      />
       <NewsSection />
-      <SectionDivider bgClassName="bg-secondary" fillClassName="fill-accent" variant="diagonal" />
+      <SectionDivider bgClassName="bg-secondary" fillClassName="fill-background" variant="diagonal" />
       <CtaSection />
-      <SectionDivider bgClassName="bg-accent" fillClassName="fill-charcoal" variant="curve" />
     </>
   );
 }

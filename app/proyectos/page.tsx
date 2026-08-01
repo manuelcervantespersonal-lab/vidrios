@@ -19,7 +19,7 @@ export default function ProyectosPage() {
         image="/images/hero/hero-proyectos.jpg"
       />
 
-      <section className="section-py bg-white">
+      <section className="section-py bg-background">
         <div className="container-px mx-auto max-w-7xl">
           <Suspense fallback={null}>
             <ProjectsFilterGrid />

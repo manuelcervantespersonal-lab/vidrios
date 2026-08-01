@@ -3,36 +3,36 @@
 @tailwind utilities;
 
 /*
-  Design tokens for the corporate site.
-  Accent color is an institutional red used sparingly for CTAs,
-  underlines and highlights — never as a large background fill.
+  Dark-first design system (Lusion-inspired): near-black background is the
+  default everywhere, light text, and the institutional red is used only as
+  a punctual accent (underline, focus ring, one button) — never a large fill.
 */
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222 15% 12%;
+  --background: 0 0% 4%;
+  --foreground: 0 0% 95%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 222 15% 12%;
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 95%;
 
-  --border: 220 13% 88%;
-  --input: 220 13% 88%;
-  --ring: 355 72% 38%;
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+  --ring: 355 78% 52%;
 
-  --primary: 222 20% 11%;
-  --primary-foreground: 0 0% 98%;
+  --primary: 0 0% 95%;
+  --primary-foreground: 0 0% 6%;
 
-  --secondary: 220 14% 96%;
-  --secondary-foreground: 222 15% 12%;
+  --secondary: 0 0% 8%;
+  --secondary-foreground: 0 0% 95%;
 
-  --muted: 220 14% 96%;
-  --muted-foreground: 220 9% 40%;
+  --muted: 0 0% 11%;
+  --muted-foreground: 0 0% 62%;
 
-  --accent: 355 72% 38%;
+  --accent: 355 74% 48%;
   --accent-foreground: 0 0% 98%;
-  --accent-dark: 355 75% 28%;
+  --accent-dark: 355 78% 36%;
 
-  --charcoal: 222 22% 9%;
-  --charcoal-light: 220 16% 16%;
+  --charcoal: 0 0% 3%;
+  --charcoal-light: 0 0% 10%;
 
   --radius: 0.375rem;
 }
@@ -46,6 +46,12 @@ body {
   background: hsl(var(--background));
 }
 
+/* Custom cursor is enabled by JS only on fine-pointer, non-touch devices. */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -57,6 +63,17 @@ body {
 
   .section-py {
     @apply py-20 md:py-28;
+  }
+
+  /* Giant Lusion-style section headline: fills most of the viewport width. */
+  .text-display {
+    @apply font-heading font-bold uppercase leading-[0.92] tracking-tight;
+    font-size: clamp(2.75rem, 8vw, 7.5rem);
+  }
+
+  .text-display-sm {
+    @apply font-heading font-bold uppercase leading-[0.95] tracking-tight;
+    font-size: clamp(2.25rem, 5.5vw, 4.5rem);
   }
 }
 
@@ -79,4 +96,10 @@ body {
     outline: 2px solid hsl(var(--accent));
     outline-offset: 2px;
   }
+}
+
+/* SplitText word/char wrappers need overflow clipping for the reveal mask. */
+.split-line {
+  overflow: hidden;
+  display: block;
 }

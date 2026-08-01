@@ -1,104 +1,87 @@
 "use client";
 
-import { useRef } from "react";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import Link from "next/link";
-import { motion, useScroll, useTransform, type Variants } from "framer-motion";
+import { TransitionLink as Link } from "@/components/transition/transition-link";
 import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { SplitHeading } from "@/components/motion/split-heading";
+import { useCanRender3D } from "@/components/three/use-can-render-3d";
 
-const container: Variants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-};
+// WebGL doesn't exist on the server, so the Three.js canvas is client-only.
+const HeroCanvas = dynamic(() => import("@/components/three/hero-canvas"), {
+  ssr: false,
+});
 
-const item: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] },
-  },
-};
+function HeroFallbackImage() {
+  return (
+    <Image
+      src="/images/hero/hero-facade-01.jpg"
+      alt="Fachada de vidrio vista desde abajo con reflejos de cielo en un edificio corporativo de gran altura"
+      fill
+      priority
+      className="object-cover opacity-60"
+      sizes="100vw"
+    />
+  );
+}
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const canRender3D = useCanRender3D();
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative flex h-screen min-h-[640px] w-full items-center overflow-hidden bg-charcoal"
-    >
-      <motion.div className="absolute inset-0" style={{ y: imageY }}>
-        <Image
-          src="/images/hero/hero-facade-01.jpg"
-          alt="Fachada de vidrio vista desde abajo con reflejos de cielo en un edificio corporativo de gran altura"
-          fill
-          priority
-          className="scale-110 object-cover"
-          sizes="100vw"
-        />
-      </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/40" />
-      <div className="absolute inset-0 bg-gradient-to-r from-charcoal/50 via-transparent to-transparent" />
+    <section className="relative flex h-screen min-h-[640px] w-full items-center overflow-hidden bg-background">
+      <div className="absolute inset-0">
+        {canRender3D ? (
+          <Suspense fallback={<HeroFallbackImage />}>
+            <HeroCanvas />
+          </Suspense>
+        ) : (
+          <HeroFallbackImage />
+        )}
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
 
-      <motion.div
-        className="container-px relative mx-auto w-full max-w-7xl"
-        style={{ y: contentY, opacity: contentOpacity }}
-      >
-        <motion.div variants={container} initial="hidden" animate="show" className="max-w-3xl">
-          <motion.span
-            variants={item}
-            className="mb-5 inline-block border-l-2 border-accent pl-4 font-heading text-sm uppercase tracking-[0.25em] text-white/80"
-          >
-            Fachadas y sistemas de vidrio
-          </motion.span>
-          <motion.h1
-            variants={item}
-            className="text-5xl font-semibold leading-[1.05] text-white sm:text-6xl md:text-7xl"
-          >
-            Construimos la piel de los proyectos más ambiciosos
-          </motion.h1>
-          <motion.p
-            variants={item}
-            className="mt-6 max-w-xl font-body text-base normal-case tracking-normal text-white/80 md:text-lg"
-          >
-            Diseñamos, fabricamos e instalamos ventanería, muros cortina y
-            sistemas de vidrio para hoteles, aeropuertos, hospitales y casinos
-            en toda Latinoamérica.
-          </motion.p>
-          <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
-            <Button asChild size="lg" className="group">
-              <Link href="/servicios">
-                Qué hacemos
-                <ChevronDown className="h-4 w-4 -rotate-90 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="text-white">
-              <Link href="/proyectos">Ver proyectos</Link>
-            </Button>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+      <div className="container-px relative mx-auto w-full max-w-7xl">
+        <span className="mb-6 inline-block border-l-2 border-accent pl-4 font-heading text-xs uppercase tracking-[0.35em] text-white/60">
+          Fachadas y sistemas de vidrio
+        </span>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70"
-      >
-        <ChevronDown className="h-6 w-6 animate-bounce" aria-hidden="true" />
-      </motion.div>
+        <SplitHeading
+          as="h1"
+          scrollTrigger={false}
+          className="text-display max-w-5xl text-white"
+        >
+          CONSTRUIMOS LA PIEL DE LOS PROYECTOS MÁS AMBICIOSOS
+        </SplitHeading>
+
+        <p className="mt-8 max-w-xl font-body text-base normal-case tracking-normal text-white/60 md:text-lg">
+          Diseñamos, fabricamos e instalamos ventanería, muros cortina y
+          sistemas de vidrio para hoteles, aeropuertos, hospitales y casinos
+          en toda Latinoamérica.
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center gap-4">
+          <Button asChild size="lg" className="group">
+            <Link href="/servicios">
+              Qué hacemos
+              <ChevronDown className="h-4 w-4 -rotate-90 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="text-white">
+            <Link href="/proyectos">Ver proyectos</Link>
+          </Button>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/50">
+        <span className="font-heading text-[10px] uppercase tracking-[0.35em]">
+          Scroll para explorar
+        </span>
+        <ChevronDown className="h-5 w-5 animate-bounce" aria-hidden="true" />
+      </div>
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "@/components/transition/transition-link";
 import { ArrowUpRight } from "lucide-react";
 
 import type { Project } from "@/data/projects";
@@ -8,6 +8,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/proyectos/${project.slug}`}
+      data-cursor-hover
       className="group block shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl"
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">

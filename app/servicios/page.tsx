@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { Check } from "lucide-react";
+import { TransitionLink as Link } from "@/components/transition/transition-link";
+import { Check, ArrowUpRight } from "lucide-react";
 
 import { PageBanner } from "@/components/shared/page-banner";
 import { Reveal } from "@/components/motion/reveal";
+import { SplitHeading } from "@/components/motion/split-heading";
 import { Button } from "@/components/ui/button";
 import { services } from "@/data/services";
 
@@ -27,7 +28,7 @@ export default function ServiciosPage() {
         <section
           key={service.slug}
           id={service.anchor}
-          className={`section-py scroll-mt-24 ${index % 2 === 1 ? "bg-secondary" : "bg-white"}`}
+          className={`section-py scroll-mt-24 ${index % 2 === 1 ? "bg-secondary" : "bg-background"}`}
         >
           <div className="container-px mx-auto max-w-7xl">
             <div
@@ -36,23 +37,23 @@ export default function ServiciosPage() {
               }`}
             >
               <Reveal>
-                <span className="font-heading text-6xl font-semibold text-accent/30">
+                <span className="font-heading text-6xl font-bold text-accent/25">
                   {service.number}
                 </span>
-                <h2 className="mt-2 text-3xl font-semibold text-primary md:text-4xl">
-                  {service.title}
-                </h2>
-                <p className="mt-5 font-body text-base normal-case tracking-normal text-muted-foreground">
+                <SplitHeading as="h2" className="text-display-sm mt-2 text-white">
+                  {service.title.toUpperCase()}
+                </SplitHeading>
+                <p className="mt-5 font-body text-base normal-case tracking-normal text-white/55">
                   {service.shortDescription}
                 </p>
-                <div className="mt-4 space-y-3 font-body text-base normal-case tracking-normal text-muted-foreground">
+                <div className="mt-4 space-y-3 font-body text-base normal-case tracking-normal text-white/55">
                   {service.description.map((paragraph, i) => (
                     <p key={i}>{paragraph}</p>
                   ))}
                 </div>
                 <ul className="mt-6 space-y-2.5">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5 text-sm text-primary">
+                    <li key={feature} className="flex items-start gap-2.5 text-sm text-white">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                       {feature}
                     </li>
@@ -67,7 +68,7 @@ export default function ServiciosPage() {
                     alt={service.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover"
+                    className="object-cover opacity-90"
                   />
                 </div>
               </Reveal>
@@ -76,13 +77,16 @@ export default function ServiciosPage() {
         </section>
       ))}
 
-      <section className="bg-accent">
-        <div className="container-px mx-auto flex max-w-7xl flex-col items-center gap-6 py-16 text-center">
-          <h2 className="text-2xl font-semibold text-white md:text-4xl">
-            ¿Necesitas asesoría técnica para tu proyecto?
-          </h2>
-          <Button asChild size="lg" variant="dark">
-            <Link href="/contacto">Contáctanos</Link>
+      <section className="section-py bg-background text-center">
+        <div className="container-px mx-auto flex max-w-3xl flex-col items-center gap-8">
+          <SplitHeading as="h2" className="text-display text-white">
+            ¿NECESITAS ASESORÍA TÉCNICA?
+          </SplitHeading>
+          <Button asChild size="lg" className="group">
+            <Link href="/contacto">
+              Contáctanos
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </Button>
         </div>
       </section>

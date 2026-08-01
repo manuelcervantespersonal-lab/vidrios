@@ -45,7 +45,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
           <Link
             href="/productos"
             data-cursor-hover
-            className="inline-flex items-center gap-2 font-heading text-sm uppercase tracking-wide text-white/50 hover:text-accent"
+            className="inline-flex items-center gap-2 font-heading text-sm uppercase tracking-wide text-muted-foreground hover:text-accent"
           >
             <ArrowLeft className="h-4 w-4" />
             Volver a productos
@@ -53,7 +53,7 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
 
           <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              <Reveal className="space-y-4 font-body text-base normal-case tracking-normal text-white/55">
+              <Reveal className="space-y-4 font-body text-base normal-case tracking-normal text-muted-foreground">
                 {product.description.map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
@@ -78,14 +78,14 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
               </div>
 
               <Reveal delay={0.15} className="mt-10">
-                <h2 className="font-heading text-sm uppercase tracking-widest text-white">
+                <h2 className="font-heading text-sm uppercase tracking-widest text-foreground">
                   Aplicaciones
                 </h2>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {product.applications.map((app) => (
                     <li
                       key={app}
-                      className="flex items-center gap-2 border border-white/15 px-3 py-1.5 text-sm text-white"
+                      className="flex items-center gap-2 border border-border px-3 py-1.5 text-sm text-foreground"
                     >
                       <Check className="h-3.5 w-3.5 text-accent" />
                       {app}
@@ -96,15 +96,15 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
             </div>
 
             <Reveal delay={0.1}>
-              <aside className="border border-white/10 bg-secondary p-8">
-                <h2 className="font-heading text-sm uppercase tracking-widest text-white">
+              <aside className="border border-border bg-secondary p-8">
+                <h2 className="font-heading text-sm uppercase tracking-widest text-foreground">
                   Especificaciones
                 </h2>
                 <dl className="mt-6 space-y-5 text-sm">
                   {product.specs.map((spec) => (
                     <div key={spec.label}>
-                      <dt className="text-white/45">{spec.label}</dt>
-                      <dd className="font-medium text-white">{spec.value}</dd>
+                      <dt className="text-muted-foreground">{spec.label}</dt>
+                      <dd className="font-medium text-foreground">{spec.value}</dd>
                     </div>
                   ))}
                 </dl>

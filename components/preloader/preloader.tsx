@@ -91,17 +91,17 @@ export function Preloader() {
           as="span"
           scrollTrigger={false}
           splitType="chars"
-          className="font-heading text-xs uppercase tracking-[0.4em] text-white/40"
+          className="font-heading text-xs uppercase tracking-[0.4em] text-muted-foreground"
         >
           CRISTALUM
         </SplitHeading>
         <span
           ref={counterRef}
-          className="font-heading text-6xl font-bold tabular-nums text-white md:text-8xl"
+          className="font-heading text-6xl font-bold tabular-nums text-foreground md:text-8xl"
         >
           0%
         </span>
-        <div className="h-px w-40 overflow-hidden bg-white/10">
+        <div className="h-px w-40 overflow-hidden bg-border">
           <div ref={barRef} className="h-full w-0 bg-accent" />
         </div>
       </div>

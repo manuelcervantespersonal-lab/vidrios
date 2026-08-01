@@ -33,7 +33,7 @@ export function ProjectPreviewList({ projects }: { projects: Project[] }) {
 
   return (
     <div className="relative" onMouseMove={handleMouseMove}>
-      <ul className="divide-y divide-white/10 border-y border-white/10">
+      <ul className="divide-y divide-border border-y border-border">
         {projects.map((project) => (
           <li key={project.slug}>
             <Link
@@ -47,13 +47,13 @@ export function ProjectPreviewList({ projects }: { projects: Project[] }) {
                 <span className="font-heading text-xs uppercase tracking-[0.3em] text-accent">
                   {project.category}
                 </span>
-                <h3 className="mt-2 text-display-sm text-white transition-colors duration-300 group-hover:text-white/60">
+                <h3 className="mt-2 text-display-sm text-foreground transition-colors duration-300 group-hover:text-accent">
                   {project.name}
                 </h3>
               </div>
-              <span className="flex items-center gap-3 font-body text-sm normal-case tracking-normal text-white/40">
+              <span className="flex items-center gap-3 font-body text-sm normal-case tracking-normal text-muted-foreground">
                 {project.location} — {project.year}
-                <ArrowUpRight className="h-6 w-6 shrink-0 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                <ArrowUpRight className="h-6 w-6 shrink-0 text-foreground transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </span>
             </Link>
           </li>
@@ -63,7 +63,7 @@ export function ProjectPreviewList({ projects }: { projects: Project[] }) {
       <div
         ref={previewRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-64 w-48 overflow-hidden bg-charcoal opacity-0 shadow-2xl transition-opacity duration-300 md:block"
+        className="pointer-events-none fixed left-0 top-0 z-50 hidden h-64 w-48 overflow-hidden border border-border bg-card opacity-0 shadow-glow-lg transition-opacity duration-300 md:block"
         style={{ opacity: active ? 1 : 0 }}
       >
         {projects.map((project) => (

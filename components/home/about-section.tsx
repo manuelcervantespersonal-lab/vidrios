@@ -11,7 +11,7 @@ import { siteConfig } from "@/data/site";
 
 export function AboutSection() {
   return (
-    <section className="section-py relative overflow-hidden bg-secondary">
+    <section className="section-py relative overflow-hidden bg-section-gradient">
       <DecorativePattern className="-left-10 -top-10" />
       <DecorativePattern className="-bottom-10 -right-10 rotate-180" />
 
@@ -20,30 +20,26 @@ export function AboutSection() {
           <span className="font-heading text-xs uppercase tracking-[0.35em] text-accent">
             Quiénes somos
           </span>
-          <SplitHeading as="h2" className="text-display-sm mt-3 text-white">
+          <SplitHeading as="h2" className="text-display-sm mt-3 text-foreground">
             SOBRE NOSOTROS
           </SplitHeading>
-          <p className="mt-6 font-body text-base normal-case tracking-normal text-white/55">
-            {aboutContent.history[0]}
-          </p>
-          <p className="mt-4 font-body text-base normal-case tracking-normal text-white/55">
-            Desde {siteConfig.foundedYear}, acompañamos a constructoras, desarrolladoras y
-            despachos de arquitectura en proyectos que exigen precisión técnica y
-            cumplimiento absoluto de tiempos de entrega.
+          <p className="mt-6 font-body text-base normal-case tracking-normal text-muted-foreground">
+            Desde {siteConfig.foundedYear}, construimos fachadas de vidrio para los proyectos
+            más exigentes de Latinoamérica.
           </p>
 
           <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {aboutContent.values.map((value) => (
               <li key={value.title} className="flex items-center gap-2.5">
                 <CheckCircle2 className="h-5 w-5 shrink-0 text-accent" />
-                <span className="font-heading text-sm uppercase tracking-wide text-white">
+                <span className="font-heading text-sm uppercase tracking-wide text-foreground">
                   {value.title}
                 </span>
               </li>
             ))}
           </ul>
 
-          <Button asChild size="lg" variant="outline" className="mt-10 text-white">
+          <Button asChild size="lg" variant="outline" className="mt-10">
             <Link href="/nosotros">Conoce nuestra historia</Link>
           </Button>
         </Reveal>
@@ -56,7 +52,7 @@ export function AboutSection() {
               alt="Equipo de ingeniería revisando planos de fachada en planta de fabricación"
               fill
               sizes="(max-width: 1024px) 100vw, 40vw"
-              className="relative object-cover opacity-90"
+              className="relative object-cover"
             />
           </div>
         </Reveal>

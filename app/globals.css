@@ -3,36 +3,38 @@
 @tailwind utilities;
 
 /*
-  Dark-first design system (Lusion-inspired): near-black background is the
-  default everywhere, light text, and the institutional red is used only as
-  a punctual accent (underline, focus ring, one button) — never a large fill.
+  Light-first design system: white / very light sky-blue-tinted background,
+  dark slate text, and a sky-blue accent used for CTAs, underlines and
+  highlights. `--charcoal` stays dark on purpose — it's only used for
+  photo-overlay gradients (e.g. project card captions) where dark-scrim +
+  light text is still correct regardless of the page's overall theme.
 */
 :root {
-  --background: 0 0% 4%;
-  --foreground: 0 0% 95%;
+  --background: 210 40% 98%;
+  --foreground: 215 25% 16%;
 
-  --card: 0 0% 7%;
-  --card-foreground: 0 0% 95%;
+  --card: 0 0% 100%;
+  --card-foreground: 215 25% 16%;
 
-  --border: 0 0% 18%;
-  --input: 0 0% 18%;
-  --ring: 355 78% 52%;
+  --border: 210 20% 88%;
+  --input: 210 20% 88%;
+  --ring: 205 85% 43%;
 
-  --primary: 0 0% 95%;
-  --primary-foreground: 0 0% 6%;
+  --primary: 215 28% 17%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 0 0% 8%;
-  --secondary-foreground: 0 0% 95%;
+  --secondary: 210 30% 95%;
+  --secondary-foreground: 215 25% 16%;
 
-  --muted: 0 0% 11%;
-  --muted-foreground: 0 0% 62%;
+  --muted: 210 25% 94%;
+  --muted-foreground: 215 15% 45%;
 
-  --accent: 355 74% 48%;
-  --accent-foreground: 0 0% 98%;
-  --accent-dark: 355 78% 36%;
+  --accent: 205 85% 43%;
+  --accent-foreground: 0 0% 100%;
+  --accent-dark: 205 88% 32%;
 
-  --charcoal: 0 0% 3%;
-  --charcoal-light: 0 0% 10%;
+  --charcoal: 220 22% 9%;
+  --charcoal-light: 220 16% 16%;
 
   --radius: 0.375rem;
 }
@@ -74,6 +76,28 @@ html.has-custom-cursor * {
   .text-display-sm {
     @apply font-heading font-bold uppercase leading-[0.95] tracking-tight;
     font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+  }
+
+  /* Tinted shadows (blue, not generic gray) — reserved for hover/lift states. */
+  .shadow-glow {
+    box-shadow:
+      0 20px 35px -15px hsl(var(--accent) / 0.35),
+      0 8px 16px -8px hsl(var(--accent) / 0.2);
+  }
+
+  .shadow-glow-lg {
+    box-shadow:
+      0 30px 60px -18px hsl(var(--accent) / 0.4),
+      0 10px 24px -10px hsl(var(--accent) / 0.25);
+  }
+
+  /* Soft depth gradient for sections that would otherwise be flat-secondary. */
+  .bg-section-gradient {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--secondary)) 100%
+    );
   }
 }
 

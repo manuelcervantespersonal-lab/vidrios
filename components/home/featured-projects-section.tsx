@@ -17,11 +17,11 @@ export function FeaturedProjectsSection() {
             <span className="font-heading text-xs uppercase tracking-[0.35em] text-accent">
               Nuestro trabajo
             </span>
-            <SplitHeading as="h2" className="text-display mt-3 text-white">
+            <SplitHeading as="h2" className="text-display mt-3 text-foreground">
               PROYECTOS DESTACADOS
             </SplitHeading>
           </div>
-          <Button asChild variant="outline" className="text-white">
+          <Button asChild variant="outline">
             <Link href="/proyectos">Ver todos los proyectos</Link>
           </Button>
         </Reveal>

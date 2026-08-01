@@ -1,57 +1,62 @@
-import Image from "next/image";
-import { TransitionLink as Link } from "@/components/transition/transition-link";
-import { ArrowUpRight } from "lucide-react";
+"use client";
+
+import type { RefObject } from "react";
 
 import { services } from "@/data/services";
-import { Reveal } from "@/components/motion/reveal";
 import { SplitHeading } from "@/components/motion/split-heading";
+import { TransitionLink as Link } from "@/components/transition/transition-link";
+import { useCanRender3D } from "@/components/three/use-can-render-3d";
+import { cn } from "@/lib/utils";
 
-export function ServicesSection() {
+interface ServicesSectionProps {
+  sectionRef: RefObject<HTMLElement>;
+}
+
+/**
+ * Text layer only — the 4 service names appear as 3D panels+labels in the
+ * persistent <HomeScene> Canvas behind this section (see home-content.tsx).
+ * The links below are real, accessible HTML (WebGL text is invisible to
+ * screen readers), kept deliberately minimal so the 3D carries the weight.
+ *
+ * The tall min-height only applies when the 3D scene is actually rendering
+ * (it gives the scroll-scrubbed animation room to play) — on mobile/
+ * low-power devices, where there's no 3D behind it, that same height would
+ * just be an empty gap, so it collapses to a normal section there.
+ */
+export function ServicesSection({ sectionRef }: ServicesSectionProps) {
+  const canRender3D = useCanRender3D();
+
   return (
-    <section className="section-py bg-background" id="servicios-home">
+    <section
+      ref={sectionRef}
+      className={cn(
+        "relative flex w-full flex-col bg-transparent py-20",
+        canRender3D ? "min-h-[160vh] justify-between" : "justify-start gap-10"
+      )}
+      id="servicios-home"
+    >
       <div className="container-px mx-auto max-w-7xl">
         <span className="mb-4 inline-block font-heading text-xs uppercase tracking-[0.35em] text-accent">
           Lo que hacemos
         </span>
-        <SplitHeading as="h2" className="text-display max-w-3xl text-white">
+        <SplitHeading as="h2" className="text-display max-w-2xl text-foreground">
           NUESTROS SERVICIOS
         </SplitHeading>
+      </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service, i) => (
-            <Reveal key={service.slug} delay={i * 0.08}>
-              <Link
-                href={`/servicios#${service.anchor}`}
-                data-cursor-hover
-                className="group block h-full border border-white/10 bg-secondary shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 25vw"
-                    className="object-cover opacity-80 transition-transform duration-500 ease-out group-hover:scale-105 group-hover:opacity-100"
-                  />
-                  <div className="absolute inset-0 bg-background/30 transition-colors group-hover:bg-background/10" />
-                  <span className="absolute left-4 top-4 font-heading text-sm text-white/70">
-                    {service.number}
-                  </span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-white">{service.title}</h3>
-                  <p className="mt-2 line-clamp-2 font-body text-sm normal-case tracking-normal text-white/50">
-                    {service.shortDescription}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 font-heading text-sm font-medium uppercase tracking-wide text-accent">
-                    Ver más
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
+      <div className="container-px mx-auto w-full max-w-7xl">
+        <nav aria-label="Servicios" className="flex flex-wrap gap-x-10 gap-y-3">
+          {services.map((service) => (
+            <Link
+              key={service.slug}
+              href={`/servicios#${service.anchor}`}
+              data-cursor-hover
+              className="font-heading text-sm uppercase tracking-wide text-muted-foreground transition-colors hover:text-accent"
+            >
+              {service.number} — {service.title}
+            </Link>
           ))}
-        </div>
+        </nav>
       </div>
     </section>
   );

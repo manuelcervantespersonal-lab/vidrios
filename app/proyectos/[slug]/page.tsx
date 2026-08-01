@@ -50,7 +50,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
           <Link
             href="/proyectos"
             data-cursor-hover
-            className="inline-flex items-center gap-2 font-heading text-sm uppercase tracking-wide text-white/50 hover:text-accent"
+            className="inline-flex items-center gap-2 font-heading text-sm uppercase tracking-wide text-muted-foreground hover:text-accent"
           >
             <ArrowLeft className="h-4 w-4" />
             Volver a proyectos
@@ -58,7 +58,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
 
           <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              <Reveal className="space-y-4 font-body text-base normal-case tracking-normal text-white/55">
+              <Reveal className="space-y-4 font-body text-base normal-case tracking-normal text-muted-foreground">
                 {project.description.map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
@@ -84,50 +84,50 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
 
             <Reveal delay={0.1}>
-              <aside className="border border-white/10 bg-secondary p-8">
-                <h2 className="font-heading text-sm uppercase tracking-widest text-white">
+              <aside className="border border-border bg-secondary p-8">
+                <h2 className="font-heading text-sm uppercase tracking-widest text-foreground">
                   Ficha técnica
                 </h2>
                 <dl className="mt-6 space-y-5 text-sm">
                   <div className="flex gap-3">
                     <MapPin className="h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <dt className="text-white/45">Ubicación</dt>
-                      <dd className="font-medium text-white">{project.location}</dd>
+                      <dt className="text-muted-foreground">Ubicación</dt>
+                      <dd className="font-medium text-foreground">{project.location}</dd>
                     </div>
                   </div>
                   <div className="flex gap-3">
                     <CalendarDays className="h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <dt className="text-white/45">Año</dt>
-                      <dd className="font-medium text-white">{project.year}</dd>
+                      <dt className="text-muted-foreground">Año</dt>
+                      <dd className="font-medium text-foreground">{project.year}</dd>
                     </div>
                   </div>
                   <div className="flex gap-3">
                     <Building2 className="h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <dt className="text-white/45">Cliente</dt>
-                      <dd className="font-medium text-white">{project.client}</dd>
+                      <dt className="text-muted-foreground">Cliente</dt>
+                      <dd className="font-medium text-foreground">{project.client}</dd>
                     </div>
                   </div>
                   <div className="flex gap-3">
                     <Ruler className="h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <dt className="text-white/45">Área</dt>
-                      <dd className="font-medium text-white">{project.area}</dd>
+                      <dt className="text-muted-foreground">Área</dt>
+                      <dd className="font-medium text-foreground">{project.area}</dd>
                     </div>
                   </div>
                 </dl>
 
-                <div className="mt-6 border-t border-white/10 pt-6">
-                  <h3 className="font-heading text-xs uppercase tracking-widest text-white/45">
+                <div className="mt-6 border-t border-border pt-6">
+                  <h3 className="font-heading text-xs uppercase tracking-widest text-muted-foreground">
                     Alcance del proyecto
                   </h3>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {project.scope.map((item) => (
                       <li
                         key={item}
-                        className="border border-white/15 px-3 py-1 text-xs font-medium text-white"
+                        className="border border-border px-3 py-1 text-xs font-medium text-foreground"
                       >
                         {item}
                       </li>
@@ -143,7 +143,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
       {related.length > 0 && (
         <section className="section-py bg-secondary">
           <div className="container-px mx-auto max-w-7xl">
-            <SplitHeading as="h2" className="text-display-sm text-white">
+            <SplitHeading as="h2" className="text-display-sm text-foreground">
               PROYECTOS RELACIONADOS
             </SplitHeading>
             <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

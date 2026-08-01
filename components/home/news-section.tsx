@@ -15,12 +15,12 @@ function formatDate(date: string) {
 
 export function NewsSection() {
   return (
-    <section className="section-py bg-secondary">
+    <section className="section-py bg-section-gradient">
       <div className="container-px mx-auto max-w-7xl">
         <span className="mb-4 inline-block font-heading text-xs uppercase tracking-[0.35em] text-accent">
           Actualidad
         </span>
-        <SplitHeading as="h2" className="text-display max-w-3xl text-white">
+        <SplitHeading as="h2" className="text-display max-w-3xl text-foreground">
           ÚLTIMAS NOTICIAS
         </SplitHeading>
 
@@ -29,7 +29,7 @@ export function NewsSection() {
             <Reveal key={item.slug} delay={i * 0.1}>
               <article
                 data-cursor-hover
-                className="group h-full border border-white/10 bg-background shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl"
+                className="group h-full border border-border bg-card shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow"
               >
                 <div className="relative aspect-[3/2] overflow-hidden">
                   <Image
@@ -37,18 +37,18 @@ export function NewsSection() {
                     alt={item.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover opacity-80 transition-transform duration-500 ease-out group-hover:scale-105 group-hover:opacity-100"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   />
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center gap-2 text-xs text-white/40">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <CalendarDays className="h-3.5 w-3.5" />
                     <time dateTime={item.date}>{formatDate(item.date)}</time>
                   </div>
-                  <h3 className="mt-3 text-lg font-semibold leading-snug text-white">
+                  <h3 className="mt-3 text-lg font-semibold leading-snug text-foreground">
                     {item.title}
                   </h3>
-                  <p className="mt-2 font-body text-sm normal-case tracking-normal text-white/50">
+                  <p className="mt-2 line-clamp-2 font-body text-sm normal-case tracking-normal text-muted-foreground">
                     {item.excerpt}
                   </p>
                 </div>

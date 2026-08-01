@@ -99,7 +99,7 @@ export function CustomCursor() {
             "rounded-full border transition-[transform,background-color,border-color] duration-300 ease-out",
             hovering
               ? "scale-[1.8] border-accent bg-accent/10"
-              : "scale-100 border-white/40 bg-transparent"
+              : "scale-100 border-foreground/35 bg-transparent"
           )}
           style={{ height: RING_SIZE, width: RING_SIZE }}
         />

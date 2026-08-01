@@ -28,7 +28,7 @@ export default function ServiciosPage() {
         <section
           key={service.slug}
           id={service.anchor}
-          className={`section-py scroll-mt-24 ${index % 2 === 1 ? "bg-secondary" : "bg-background"}`}
+          className={`section-py scroll-mt-24 ${index % 2 === 1 ? "bg-section-gradient" : "bg-background"}`}
         >
           <div className="container-px mx-auto max-w-7xl">
             <div
@@ -40,20 +40,20 @@ export default function ServiciosPage() {
                 <span className="font-heading text-6xl font-bold text-accent/25">
                   {service.number}
                 </span>
-                <SplitHeading as="h2" className="text-display-sm mt-2 text-white">
+                <SplitHeading as="h2" className="text-display-sm mt-2 text-foreground">
                   {service.title.toUpperCase()}
                 </SplitHeading>
-                <p className="mt-5 font-body text-base normal-case tracking-normal text-white/55">
+                <p className="mt-5 font-body text-base normal-case tracking-normal text-muted-foreground">
                   {service.shortDescription}
                 </p>
-                <div className="mt-4 space-y-3 font-body text-base normal-case tracking-normal text-white/55">
+                <div className="mt-4 space-y-3 font-body text-base normal-case tracking-normal text-muted-foreground">
                   {service.description.map((paragraph, i) => (
                     <p key={i}>{paragraph}</p>
                   ))}
                 </div>
                 <ul className="mt-6 space-y-2.5">
                   {service.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5 text-sm text-white">
+                    <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                       {feature}
                     </li>
@@ -79,7 +79,7 @@ export default function ServiciosPage() {
 
       <section className="section-py bg-background text-center">
         <div className="container-px mx-auto flex max-w-3xl flex-col items-center gap-8">
-          <SplitHeading as="h2" className="text-display text-white">
+          <SplitHeading as="h2" className="text-display text-foreground">
             ¿NECESITAS ASESORÍA TÉCNICA?
           </SplitHeading>
           <Button asChild size="lg" className="group">

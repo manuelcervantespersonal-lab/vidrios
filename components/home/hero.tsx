@@ -1,67 +1,58 @@
 "use client";
 
-import { Suspense } from "react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { TransitionLink as Link } from "@/components/transition/transition-link";
 import { ChevronDown } from "lucide-react";
+import type { RefObject } from "react";
 
 import { Button } from "@/components/ui/button";
 import { SplitHeading } from "@/components/motion/split-heading";
 import { useCanRender3D } from "@/components/three/use-can-render-3d";
 
-// WebGL doesn't exist on the server, so the Three.js canvas is client-only.
-const HeroCanvas = dynamic(() => import("@/components/three/hero-canvas"), {
-  ssr: false,
-});
-
-function HeroFallbackImage() {
-  return (
-    <Image
-      src="/images/hero/hero-facade-01.jpg"
-      alt="Fachada de vidrio vista desde abajo con reflejos de cielo en un edificio corporativo de gran altura"
-      fill
-      priority
-      className="object-cover opacity-60"
-      sizes="100vw"
-    />
-  );
+interface HeroProps {
+  sectionRef: RefObject<HTMLElement>;
 }
 
-export function Hero() {
+/**
+ * Text-only layer — the glass panels live in the single persistent
+ * <HomeScene> Canvas mounted alongside this section (see home-content.tsx),
+ * not inside Hero itself. On mobile/low-power devices that Canvas doesn't
+ * render at all, so Hero shows its own static photo instead.
+ */
+export function Hero({ sectionRef }: HeroProps) {
   const canRender3D = useCanRender3D();
 
   return (
-    <section className="relative flex h-screen min-h-[640px] w-full items-center overflow-hidden bg-background">
-      <div className="absolute inset-0">
-        {canRender3D ? (
-          <Suspense fallback={<HeroFallbackImage />}>
-            <HeroCanvas />
-          </Suspense>
-        ) : (
-          <HeroFallbackImage />
-        )}
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
+    <section
+      ref={sectionRef}
+      className="relative flex h-screen min-h-[640px] w-full items-center overflow-hidden bg-transparent"
+    >
+      {!canRender3D && (
+        <Image
+          src="/images/hero/hero-facade-01.jpg"
+          alt="Fachada de vidrio vista desde abajo con reflejos de cielo en un edificio corporativo de gran altura"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+      )}
+      {!canRender3D && (
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/10" />
+      )}
 
       <div className="container-px relative mx-auto w-full max-w-7xl">
-        <span className="mb-6 inline-block border-l-2 border-accent pl-4 font-heading text-xs uppercase tracking-[0.35em] text-white/60">
+        <span className="mb-6 inline-block border-l-2 border-accent pl-4 font-heading text-xs uppercase tracking-[0.35em] text-muted-foreground">
           Fachadas y sistemas de vidrio
         </span>
 
         <SplitHeading
           as="h1"
           scrollTrigger={false}
-          className="text-display max-w-5xl text-white"
+          className="text-display max-w-4xl text-foreground"
         >
-          CONSTRUIMOS LA PIEL DE LOS PROYECTOS MÁS AMBICIOSOS
+          CONSTRUIMOS TU FACHADA
         </SplitHeading>
-
-        <p className="mt-8 max-w-xl font-body text-base normal-case tracking-normal text-white/60 md:text-lg">
-          Diseñamos, fabricamos e instalamos ventanería, muros cortina y
-          sistemas de vidrio para hoteles, aeropuertos, hospitales y casinos
-          en toda Latinoamérica.
-        </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <Button asChild size="lg" className="group">
@@ -70,13 +61,13 @@ export function Hero() {
               <ChevronDown className="h-4 w-4 -rotate-90 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="text-white">
+          <Button asChild size="lg" variant="outline">
             <Link href="/proyectos">Ver proyectos</Link>
           </Button>
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/50">
+      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground">
         <span className="font-heading text-[10px] uppercase tracking-[0.35em]">
           Scroll para explorar
         </span>

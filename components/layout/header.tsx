@@ -65,10 +65,8 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50">
       <div
         className={cn(
-          "transition-[background-color,backdrop-filter,box-shadow,border-color] duration-400",
-          scrolled
-            ? "border-b border-white/10 bg-background/75 shadow-lg backdrop-blur-md"
-            : "border-b border-transparent bg-transparent"
+          "border-b bg-background/80 backdrop-blur-md transition-shadow duration-300",
+          scrolled ? "border-border shadow-sm" : "border-border/60"
         )}
       >
         <div
@@ -77,7 +75,7 @@ export function Header() {
             scrolled ? "h-16 md:h-18" : "h-20 md:h-24"
           )}
         >
-          <Logo variant="light" />
+          <Logo variant="dark" />
 
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
             {mainNav.map((navItem) => {
@@ -88,8 +86,8 @@ export function Header() {
                   key={navItem.href}
                   href={navItem.href}
                   className={cn(
-                    "group relative py-1 font-heading text-sm font-medium uppercase tracking-wide text-white/80 transition-colors hover:text-white",
-                    active && "text-white"
+                    "group relative py-1 font-heading text-sm font-medium uppercase tracking-wide text-foreground/70 transition-colors hover:text-foreground",
+                    active && "text-foreground"
                   )}
                 >
                   {navItem.label}
@@ -113,7 +111,7 @@ export function Header() {
 
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center text-white lg:hidden"
+            className="flex h-10 w-10 items-center justify-center text-foreground lg:hidden"
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
@@ -140,7 +138,7 @@ export function Header() {
                 ref={(el) => {
                   linkRefs.current[i] = el;
                 }}
-                className="inline-block text-display-sm text-white"
+                className="inline-block text-display-sm text-foreground"
               >
                 {navItem.label}
               </span>

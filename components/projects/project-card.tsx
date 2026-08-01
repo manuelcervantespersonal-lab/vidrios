@@ -9,7 +9,7 @@ export function ProjectCard({ project }: { project: Project }) {
     <Link
       href={`/proyectos/${project.slug}`}
       data-cursor-hover
-      className="group block shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl"
+      className="group block shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-glow"
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">
         <Image

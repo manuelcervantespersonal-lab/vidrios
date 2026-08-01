@@ -32,10 +32,10 @@ export default function NosotrosPage() {
             <span className="font-heading text-xs uppercase tracking-[0.35em] text-accent">
               Nuestra historia
             </span>
-            <SplitHeading as="h2" className="text-display-sm mt-3 text-white">
+            <SplitHeading as="h2" className="text-display-sm mt-3 text-foreground">
               DE UN TALLER LOCAL A UN GRUPO NACIONAL
             </SplitHeading>
-            <div className="mt-6 space-y-4 font-body text-base normal-case tracking-normal text-white/55">
+            <div className="mt-6 space-y-4 font-body text-base normal-case tracking-normal text-muted-foreground">
               {aboutContent.history.map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>
               ))}
@@ -57,15 +57,15 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      <section className="section-py border-y border-white/10 bg-secondary">
+      <section className="section-py border-y border-border bg-section-gradient">
         <div className="container-px mx-auto max-w-7xl">
           <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
             {companyStats.map((stat, i) => (
               <Reveal key={stat.label} delay={i * 0.1} className="text-center md:text-left">
-                <div className="font-heading text-5xl font-bold text-white md:text-6xl">
+                <div className="font-heading text-5xl font-bold text-foreground md:text-6xl">
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="mt-3 font-heading text-sm uppercase tracking-wide text-white/50">
+                <p className="mt-3 font-heading text-sm uppercase tracking-wide text-muted-foreground">
                   {stat.label}
                 </p>
               </Reveal>
@@ -76,17 +76,17 @@ export default function NosotrosPage() {
 
       <section className="section-py bg-background">
         <div className="container-px mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2">
-          <Reveal className="border border-white/10 bg-secondary p-10">
+          <Reveal className="border border-border bg-secondary p-10">
             <Target className="h-8 w-8 text-accent" />
-            <h3 className="mt-5 text-2xl font-semibold text-white">Misión</h3>
-            <p className="mt-4 font-body text-base normal-case tracking-normal text-white/55">
+            <h3 className="mt-5 text-2xl font-semibold text-foreground">Misión</h3>
+            <p className="mt-4 font-body text-base normal-case tracking-normal text-muted-foreground">
               {aboutContent.mission}
             </p>
           </Reveal>
-          <Reveal delay={0.1} className="border border-white/10 bg-secondary p-10">
+          <Reveal delay={0.1} className="border border-border bg-secondary p-10">
             <Eye className="h-8 w-8 text-accent" />
-            <h3 className="mt-5 text-2xl font-semibold text-white">Visión</h3>
-            <p className="mt-4 font-body text-base normal-case tracking-normal text-white/55">
+            <h3 className="mt-5 text-2xl font-semibold text-foreground">Visión</h3>
+            <p className="mt-4 font-body text-base normal-case tracking-normal text-muted-foreground">
               {aboutContent.vision}
             </p>
           </Reveal>
@@ -100,19 +100,19 @@ export default function NosotrosPage() {
               Nuestra trayectoria
             </span>
           </Reveal>
-          <SplitHeading as="h2" className="text-display text-center text-white">
+          <SplitHeading as="h2" className="text-display text-center text-foreground">
             LÍNEA DEL TIEMPO
           </SplitHeading>
 
-          <div className="relative mt-16 space-y-12 border-l border-white/10 pl-8 md:pl-10">
+          <div className="relative mt-16 space-y-12 border-l border-border pl-8 md:pl-10">
             {aboutContent.timeline.map((item, i) => (
               <Reveal key={item.year} delay={i * 0.06} className="relative">
                 <span className="absolute -left-[41px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent md:-left-[49px]" />
                 <span className="font-heading text-2xl font-semibold text-accent">
                   {item.year}
                 </span>
-                <h3 className="mt-1 text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mt-1 font-body text-sm normal-case tracking-normal text-white/50">
+                <h3 className="mt-1 text-lg font-semibold text-foreground">{item.title}</h3>
+                <p className="mt-1 font-body text-sm normal-case tracking-normal text-muted-foreground">
                   {item.description}
                 </p>
               </Reveal>
